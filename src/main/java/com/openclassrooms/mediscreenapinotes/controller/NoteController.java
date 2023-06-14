@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/apiNotes")
+@RequestMapping("/apiNote")
 public class NoteController {
    @Autowired
    NoteService noteService;
 
 
     @PostMapping("/notes")
-    public ResponseEntity<Note> createPatient(@RequestBody Note note) {
-        Note createdNote = noteService.savePost(note); ;
+    public ResponseEntity<Note> createNote(@RequestBody Note note) {
+        Note createdNote = noteService.savePost(note);
         return new ResponseEntity<>(createdNote, HttpStatus.CREATED);
     }
 
@@ -35,6 +35,19 @@ public class NoteController {
         return note.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping("/notesList/{patientId}")
+    public ResponseEntity<List<Note>> getNotesByPatientId(@PathVariable("patientId") Long patientId) {
+        List<Note> notes = noteService.findByPatientId(patientId);
+        if (notes.isEmpty()) {
+            // Si aucune note n'est trouvée, vous pouvez renvoyer une réponse avec un code HTTP approprié (par exemple, 404 - Not Found, no content)
+            return ResponseEntity.noContent().build();
+        } else {
+            // Si des notes sont trouvées, vous pouvez renvoyer la liste de notes dans la réponse avec un code HTTP 200 - OK
+            return ResponseEntity.ok(notes);
+        }
+    }
+
 
     @DeleteMapping("/notes/{id}")
     public void deleteNote(@PathVariable String id) {

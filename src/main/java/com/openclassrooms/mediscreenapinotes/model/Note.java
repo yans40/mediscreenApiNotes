@@ -1,5 +1,6 @@
 package com.openclassrooms.mediscreenapinotes.model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -15,6 +16,7 @@ public class Note {
     private String id;
     private Long patientId;
     private String patient;
-    private String notes;
+    @NotBlank(message = "L'observation ne peut pas être vide")
+    private String observation;
     private Date date;
 }

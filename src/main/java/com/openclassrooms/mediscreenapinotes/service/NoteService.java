@@ -25,6 +25,9 @@ public class NoteService {
         return noteRepository.findById(id);
     }
 
+    public List<Note> findByPatientId(Long id) {
+        return noteRepository.findByPatientId(id);
+    }
     public void deleteNote(String id) {
         noteRepository.deleteById(id);
     }
