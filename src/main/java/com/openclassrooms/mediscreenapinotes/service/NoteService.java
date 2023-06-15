@@ -13,7 +13,7 @@ public class NoteService {
     @Autowired
     NoteRepository noteRepository;
 
-    public Note savePost(Note note) {
+    public Note saveNote(Note note) {
         return noteRepository.insert(note);
     }
 

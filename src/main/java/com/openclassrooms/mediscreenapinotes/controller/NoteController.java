@@ -19,7 +19,7 @@ public class NoteController {
 
     @PostMapping("/notes")
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
-        Note createdNote = noteService.savePost(note);
+        Note createdNote = noteService.saveNote(note);
         return new ResponseEntity<>(createdNote, HttpStatus.CREATED);
     }
 
