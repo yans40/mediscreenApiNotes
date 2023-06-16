@@ -89,7 +89,7 @@ class NoteServiceTest {
     void getNoteById() {
         when(noteRepository.findById(anyString())).thenReturn(Optional.ofNullable(note));
 
-        Optional<Note> findedNote = noteService.getNoteById("abd");
+        Optional<Note> findedNote = noteService.getNoteById("abc");
         assertNotNull(note);
     }
 
