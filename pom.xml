@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.openclassrooms</groupId>
-    <artifactId>mediscreenApiNotes</artifactId>
+    <artifactId>mediscreenapiNotes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mediscreenApiNotes</name>
     <description>mediscreenApiNotes</description>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-            <version>3.1.0</version>
+            <version>2.6.8</version>
         </dependency>
     </dependencies>
 
