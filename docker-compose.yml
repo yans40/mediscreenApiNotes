@@ -1,5 +1,10 @@
 version: '3.9'
 services:
+  mongodb:
+    container_name: mongodb
+    build: ./database
+    ports:
+      - "21001:27017"
   apinotepatient:
     container_name: apinotepatient
     build: .
@@ -10,11 +15,7 @@ services:
     environment:
       spring.data.mongodb.uri: "mongodb://mongodb:27017/Notes"
 
-  mongodb:
-    container_name: mongodb
-    build: ./database
-    ports:
-      - "21001:27017"
+
 
 
 
