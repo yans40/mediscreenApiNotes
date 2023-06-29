@@ -2,12 +2,11 @@ db.notes.deleteMany({})
 db.notes.insertMany([
     {
         patientId: 1,
-        observation: "Observation 1",
+        observation: "cholestérol,vertige",
         date: new Date()
     },
     {
         patientId: 1,
-        patient: null,
         observation: "fumeur,taille,cholestérol,vertige",
         date: new Date()
     },
