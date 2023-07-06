@@ -31,4 +31,8 @@ public class NoteService {
     public void deleteNote(String id) {
         noteRepository.deleteById(id);
     }
+
+    public void update(Note existingNote) {
+        noteRepository.save(existingNote);
+    }
 }

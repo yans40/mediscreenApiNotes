@@ -3,6 +3,7 @@ package com.openclassrooms.mediscreenapinotes.controller;
 import com.openclassrooms.mediscreenapinotes.model.Note;
 import com.openclassrooms.mediscreenapinotes.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,21 @@ public class NoteController {
             return ResponseEntity.ok(notes);
         }
     }
+    @PutMapping("/notes/{id}")
+    public ResponseEntity<Note> updateNote(@PathVariable String id, @RequestBody Note updatedNote) {
+        Optional<Note> optionalNote = noteService.getNoteById(id);
+        if (optionalNote.isPresent()) {
+            Note existingNote = optionalNote.get();
+            existingNote.setPatientId(updatedNote.getPatientId());
+            existingNote.setObservation(updatedNote.getObservation());
 
+             noteService.update(existingNote); // Sauvegarde dans la base de données MongoDB
+
+            return new ResponseEntity<>(updatedNote, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @DeleteMapping("/notes/{id}")
     public void deleteNote(@PathVariable String id) {
